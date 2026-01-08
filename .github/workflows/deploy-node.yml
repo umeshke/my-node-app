@@ -17,4 +17,4 @@ jobs:
           cd E:\project\my-node-app
           git pull origin main
           npm ci --production
-          pm2 restart myapi
+          pm2 restart my-node-app
