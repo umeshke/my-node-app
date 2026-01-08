@@ -26,7 +26,7 @@ jobs:
             "cd E:\\project\\my-node-app",
             "git pull origin main",
             "npm ci --production",
-            "pm2 restart my-node-app || pm2 start server.js --name my-node-app -i max",
+            "pm2 restart my-node-app || pm2 start src\server.js --name my-node-app -i max",
             "pm2 save"
           ]' \
           --output text
