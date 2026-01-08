@@ -25,4 +25,4 @@ jobs:
     - name: Deploy to EC2
       env:
         INSTANCE_ID: ${{ secrets.INSTANCE_ID }}
-      run: aws ssm send-command --instance-ids "$INSTANCE_ID" --document-name "AWS-RunPowerShellScript" --parameters commands='["pm2 restart myapi || pm2 start server.js --name myapi"]'
+      run: aws ssm send-command --instance-ids "$INSTANCE_ID" --document-name "AWS-RunPowerShellScript" --parameters commands='["pm2 restart my-node-app || pm2 start server.js --name my-node-app"]'
