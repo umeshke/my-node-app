@@ -1,0 +1,14 @@
+version: 0.0
+os: windows
+files:
+  - source: /
+    destination: C:\node-apps\myapi
+hooks:
+  AfterInstall:
+    - location: scripts\Start-NodeApp.ps1
+      timeout: 1800
+      runas: Administrator
+  ApplicationStop:
+    - location: scripts\Stop-NodeApp.ps1
+      timeout: 300
+      runas: Administrator

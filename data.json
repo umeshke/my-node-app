@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1766410917900,
+    "email": "john@test.com",
+    "password": "$2b$10$CYkVJWcNZqGmOw34aYky4.FO6nMwx503deHCb6TC8TWs/yYNEQA22",
+    "name": "umesh"
+  },
+  {
+    "id": 1766476907403,
+    "email": "yuvaan@test.com",
+    "password": "$2b$10$DW9aHR.1e/mW.MV/3aMhtOUWkhzMAGtDd9bn7NytwJ38GigHpNTs2",
+    "name": "Yuvaan"
+  }
+]
