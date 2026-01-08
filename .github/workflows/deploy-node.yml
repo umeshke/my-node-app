@@ -19,7 +19,7 @@ jobs:
     - name: Deploy to Windows EC2
       run: |
         aws ssm send-command \
-          --instance-ids "i-1234567890abcdef0" \
+          --instance-ids "i-00f3fff895b5cd1e1" \
           --document-name "AWS-RunPowerShellScript" \
           --comment "Deploy Node.js app" \
           --parameters 'commands=[
