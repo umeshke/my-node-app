@@ -1,4 +1,4 @@
-name: Deploy Node API
+name: Deploy Node.js to Windows EC2
 on:
   push:
     branches: [ main ]
@@ -6,15 +6,27 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: Deploy to Windows EC2
-      uses: appleboy/ssh-action@v0.1.5
+    - uses: actions/checkout@v4
+    
+    # Configure AWS credentials
+    - uses: aws-actions/configure-aws-credentials@v4
       with:
-        host: ${{ secrets.EC2_HOST }}
-        username: Administrator
-        key: ${{ secrets.EC2_SSH_KEY }}
-        script: |
-          cd E:\project\my-node-app
-          git pull origin main
-          npm ci --production
-          pm2 restart my-node-app
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1  # Your region
+        
+    # Deploy via SSM (NO SSH KEY NEEDED)
+    - name: Deploy to Windows EC2
+      run: |
+        aws ssm send-command \
+          --instance-ids "i-1234567890abcdef0" \
+          --document-name "AWS-RunPowerShellScript" \
+          --comment "Deploy Node.js app" \
+          --parameters 'commands=[
+            "cd E:\\project\\my-node-app",
+            "git pull origin main",
+            "npm ci --production",
+            "pm2 restart my-node-app || pm2 start server.js --name my-node-app -i max",
+            "pm2 save"
+          ]' \
+          --output text
